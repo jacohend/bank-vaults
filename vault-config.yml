@@ -10,18 +10,18 @@ policies:
 # Allows configuring Auth Methods in Vault (Kubernetes and GitHub is supported now).
 # See https://www.vaultproject.io/docs/auth/index.html for more information.
 auth:
-  # Allows creating roles in Vault which can be used later on for the Kubernetes based
-  # authentication.
-  # See https://www.vaultproject.io/docs/auth/kubernetes.html#creating-a-role for
-  # more information.
-  - type: kubernetes
-    roles:
-      # Allow every pod in the default namespace to use the secret kv store
-      - name: default
-        bound_service_account_names: default
-        bound_service_account_namespaces: default
-        policies: allow_secrets
-        ttl: 1h
+  # # Allows creating roles in Vault which can be used later on for the Kubernetes based
+  # # authentication.
+  # # See https://www.vaultproject.io/docs/auth/kubernetes.html#creating-a-role for
+  # # more information.
+  # - type: kubernetes
+  #   roles:
+  #     # Allow every pod in the default namespace to use the secret kv store
+  #     - name: default
+  #       bound_service_account_names: default
+  #       bound_service_account_namespaces: default
+  #       policies: allow_secrets
+  #       ttl: 1h
 
   # Allows creating team mappings in Vault which can be used later on for the GitHub 
   # based authentication.
@@ -42,16 +42,16 @@ auth:
   # based authentication.
   # See https://www.vaultproject.io/docs/auth/ldap.html#configuration for
   # more information.
+  # Start an LDAP testing server: docker run --name openldap -d --rm -p 389:389 osixia/openldap
   - type: ldap
     config:
-      url: ldap://ldap.example.com
+      url: ldap://localhost
       userdn: ou=Users,dc=example,dc=com
       groupdn: ou=Groups,dc=example,dc=com
       groupfilter: (&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))
       groupattr: cn
       upndomain: example.com
-      certificate: @ldap_ca_cert.pem
-      insecure_tls: false
+      insecure_tls: true
       starttls: true
     groups:
       # Map the banzaicloud dev team on GitHub to the dev policy in Vault
@@ -61,22 +61,22 @@ auth:
     users:
       bonifaido: allow_secrets
 
-  # Allows creating roles in Vault which can be used later on for AWS 
-  # IAM based authentication.
-  # See https://www.vaultproject.io/docs/auth/aws.html for
-  # more information.
-  - type: aws
-    config:
-      access_key: VKIAJBRHKH6EVTTNXDHA
-      secret_key: vCtSM8ZUEQ3mOFVlYPBQkf2sO6F/W7a5TVzrl3Oj
-      iam_server_id_header_value: vault-dev.example.com # consider setting this to the Vault server's DNS name 
-    roles:
-    # Add roles for AWS instances or principals
-    # See https://www.vaultproject.io/api/auth/aws/index.html#create-role
-    - name: dev-role-iam
-      bound_iam_principal_arn: arn:aws:iam::123456789012:role/dev-vault
-      policies: allow_secrets
-      period: 1h
+#   # Allows creating roles in Vault which can be used later on for AWS 
+#   # IAM based authentication.
+#   # See https://www.vaultproject.io/docs/auth/aws.html for
+#   # more information.
+#   - type: aws
+#     config:
+#       access_key: VKIAJBRHKH6EVTTNXDHA
+#       secret_key: vCtSM8ZUEQ3mOFVlYPBQkf2sO6F/W7a5TVzrl3Oj
+#       iam_server_id_header_value: vault-dev.example.com # consider setting this to the Vault server's DNS name 
+#     roles:
+#     # Add roles for AWS instances or principals
+#     # See https://www.vaultproject.io/api/auth/aws/index.html#create-role
+#     - name: dev-role-iam
+#       bound_iam_principal_arn: arn:aws:iam::123456789012:role/dev-vault
+#       policies: allow_secrets
+#       period: 1h
 
 # Allows configuring Secrets Engines in Vault (KV, Database and SSH is tested,
 # but the config is free form so probably more is supported).
@@ -91,41 +91,41 @@ secrets:
     options:
       version: 2
 
-  # This plugin stores database credentials dynamically based on configured roles for
-  # the MySQL database.
-  # See https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html for
-  # more information.
-  - type: database
-    description: MySQL Database secret engine.
-    configuration:
-      config:
-        - name: my-mysql
-          plugin_name: "mysql-database-plugin"
-          connection_url: "{{username}}:{{password}}@tcp(127.0.0.1:3306)/"
-          allowed_roles: [pipeline]
-          username: "${env "ROOT_USERNAME"}" # Example how to read environment variables
-          password: "${env "ROOT_PASSWORD"}"
-      roles:
-        - name: pipeline
-          db_name: my-mysql
-          creation_statements: "GRANT ALL ON *.* TO '{{name}}'@'%' IDENTIFIED BY '{{password}}';"
-          default_ttl: "10m"
-          max_ttl: "24h"
+#   # This plugin stores database credentials dynamically based on configured roles for
+#   # the MySQL database.
+#   # See https://www.vaultproject.io/docs/secrets/databases/mysql-maria.html for
+#   # more information.
+#   - type: database
+#     description: MySQL Database secret engine.
+#     configuration:
+#       config:
+#         - name: my-mysql
+#           plugin_name: "mysql-database-plugin"
+#           connection_url: "{{username}}:{{password}}@tcp(127.0.0.1:3306)/"
+#           allowed_roles: [pipeline]
+#           username: "${env "ROOT_USERNAME"}" # Example how to read environment variables
+#           password: "${env "ROOT_PASSWORD"}"
+#       roles:
+#         - name: pipeline
+#           db_name: my-mysql
+#           creation_statements: "GRANT ALL ON *.* TO '{{name}}'@'%' IDENTIFIED BY '{{password}}';"
+#           default_ttl: "10m"
+#           max_ttl: "24h"
 
-  # Create a named Vault role for signing SSH client keys.
-  # See https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html#client-key-signing for
-  # more information.
-  - type: ssh
-    path: ssh-client-signer
-    description: SSH Client Key Signing.
-    configuration:
-      config:
-        - name: ca
-          generate_signing_key: "true"
-      roles:
-        - name: my-role
-          allow_user_certificates: "true"
-          allowed_users: "*"
-          key_type: "ca"
-          default_user: "ubuntu"
-          ttl: "24h"
+#   # Create a named Vault role for signing SSH client keys.
+#   # See https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates.html#client-key-signing for
+#   # more information.
+#   - type: ssh
+#     path: ssh-client-signer
+#     description: SSH Client Key Signing.
+#     configuration:
+#       config:
+#         - name: ca
+#           generate_signing_key: "true"
+#       roles:
+#         - name: my-role
+#           allow_user_certificates: "true"
+#           allowed_users: "*"
+#           key_type: "ca"
+#           default_user: "ubuntu"
+#           ttl: "24h"
