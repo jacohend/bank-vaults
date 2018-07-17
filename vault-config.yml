@@ -34,9 +34,32 @@ auth:
       # Map the banzaicloud dev team on GitHub to the dev policy in Vault
       teams:
         dev: dev
-      # Map myself to the root policy in Vault
+      # Map myself to the allow_secrets policy in Vault
       users:
         bonifaido: allow_secrets
+
+  # Allows creating group mappings in Vault which can be used later on for the LDAP 
+  # based authentication.
+  # See https://www.vaultproject.io/docs/auth/ldap.html#configuration for
+  # more information.
+  - type: ldap
+    config:
+      url: ldap://ldap.example.com
+      userdn: ou=Users,dc=example,dc=com
+      groupdn: ou=Groups,dc=example,dc=com
+      groupfilter: (&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))
+      groupattr: cn
+      upndomain: example.com
+      certificate: @ldap_ca_cert.pem
+      insecure_tls: false
+      starttls: true
+    groups:
+      # Map the banzaicloud dev team on GitHub to the dev policy in Vault
+      developers:
+        policies: allow_secrets
+    # Map myself to the allow_secrets policy in Vault
+    users:
+      bonifaido: allow_secrets
 
   # Allows creating roles in Vault which can be used later on for AWS 
   # IAM based authentication.
