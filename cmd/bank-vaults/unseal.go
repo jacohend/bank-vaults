@@ -60,7 +60,7 @@ from one of the followings:
 			logrus.Fatalf("error creating vault helper: %s", err.Error())
 		}
 
-		for {
+		for i := 0; i <= 3; i++ {
 			func() {
 				if unsealConfig.proceedInit {
 					logrus.Infof("initializing vault...")
