@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/banzaicloud/bank-vaults/auth"
-	"github.com/banzaicloud/bank-vaults/database"
-	"github.com/banzaicloud/bank-vaults/vault"
+	"github.com/jacohend/bank-vaults/auth"
+	"github.com/jacohend/bank-vaults/database"
+	"github.com/jacohend/bank-vaults/vault"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )

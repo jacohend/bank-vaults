@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/banzaicloud/bank-vaults/pkg/vault"
+	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/hashicorp/vault/api"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"

@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"github.com/banzaicloud/bank-vaults/pkg/kv"
+	"github.com/jacohend/bank-vaults/pkg/kv"
 	"golang.org/x/oauth2/google"
 	cloudkms "google.golang.org/api/cloudkms/v1"
 )

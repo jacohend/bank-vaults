@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cast"
 
-	"github.com/banzaicloud/bank-vaults/vault"
+	"github.com/jacohend/bank-vaults/vault"
 	vaultapi "github.com/hashicorp/vault/api"
 )
 

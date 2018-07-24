@@ -1,7 +1,7 @@
 [![Docker Automated build](https://img.shields.io/docker/automated/banzaicloud/bank-vaults.svg)](https://hub.docker.com/r/banzaicloud/bank-vaults/)
-[![GoDoc](https://godoc.org/github.com/banzaicloud/bank-vaults?status.svg)](https://godoc.org/github.com/banzaicloud/bank-vaults)
+[![GoDoc](https://godoc.org/github.com/jacohend/bank-vaults?status.svg)](https://godoc.org/github.com/jacohend/bank-vaults)
 [![CircleCI](https://circleci.com/gh/banzaicloud/bank-vaults/tree/master.svg?style=shield)](https://circleci.com/gh/banzaicloud/bank-vaults/tree/master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/banzaicloud/bank-vaults)](https://goreportcard.com/report/github.com/banzaicloud/bank-vaults)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jacohend/bank-vaults)](https://goreportcard.com/report/github.com/jacohend/bank-vaults)
 
 *Bank Vaults is a thick, tricky, shifty right with a fast and intense tube for experienced surfers only, located on Mentawai. Think heavy steel doors, secret unlocking combinations and burly guards with smack-down attitude. Watch out for clean-up sets.*
 
@@ -218,14 +218,14 @@ A documented example of this CRD can be found in [deploy/cr.yaml](deploy/cr.yaml
 
 Some examples are in `cmd/examples/main.go`
 
-- [Vault client example](https://github.com/banzaicloud/bank-vaults/blob/master/cmd/examples/main.go#L17)
-- [Dynamic secrets for MySQL example with Gorm](https://github.com/banzaicloud/bank-vaults/blob/master/cmd/examples/main.go#L45)
-- [JWTAuth tokens example with a Gin middleware](https://github.com/banzaicloud/bank-vaults/blob/master/cmd/examples/main.go#L53)
+- [Vault client example](https://github.com/jacohend/bank-vaults/blob/master/cmd/examples/main.go#L17)
+- [Dynamic secrets for MySQL example with Gorm](https://github.com/jacohend/bank-vaults/blob/master/cmd/examples/main.go#L45)
+- [JWTAuth tokens example with a Gin middleware](https://github.com/jacohend/bank-vaults/blob/master/cmd/examples/main.go#L53)
 
 ## Getting and Installing
 
 ```bash
-go get github.com/banzaicloud/bank-vaults/cmd/bank-vaults
+go get github.com/jacohend/bank-vaults/cmd/bank-vaults
 ```
 
 ## Cloud permissions

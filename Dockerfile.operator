@@ -1,7 +1,7 @@
 FROM golang:1.10-alpine as golang
 
-ADD . /go/src/github.com/banzaicloud/bank-vaults
-WORKDIR /go/src/github.com/banzaicloud/bank-vaults
+ADD . /go/src/github.com/jacohend/bank-vaults
+WORKDIR /go/src/github.com/jacohend/bank-vaults
 
 RUN go install ./operator/cmd/vault-operator
 

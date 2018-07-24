@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/Masterminds/sprig"
-	"github.com/banzaicloud/bank-vaults/pkg/vault"
+	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/fsnotify/fsnotify"
 	"github.com/hashicorp/vault/api"
 	"github.com/sirupsen/logrus"

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/banzaicloud/bank-vaults/vault"
+	"github.com/jacohend/bank-vaults/vault"
 	vaultapi "github.com/hashicorp/vault/api"
 	"github.com/pkg/errors"
 )

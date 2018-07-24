@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/banzaicloud/bank-vaults/pkg/kv"
+	"github.com/jacohend/bank-vaults/pkg/kv"
 )
 
 type dev struct {

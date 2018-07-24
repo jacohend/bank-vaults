@@ -3,9 +3,9 @@
 package fake
 
 import (
-	clientset "github.com/banzaicloud/bank-vaults/operator/pkg/client/clientset/versioned"
-	vaultv1alpha1 "github.com/banzaicloud/bank-vaults/operator/pkg/client/clientset/versioned/typed/vault/v1alpha1"
-	fakevaultv1alpha1 "github.com/banzaicloud/bank-vaults/operator/pkg/client/clientset/versioned/typed/vault/v1alpha1/fake"
+	clientset "github.com/jacohend/bank-vaults/operator/pkg/client/clientset/versioned"
+	vaultv1alpha1 "github.com/jacohend/bank-vaults/operator/pkg/client/clientset/versioned/typed/vault/v1alpha1"
+	fakevaultv1alpha1 "github.com/jacohend/bank-vaults/operator/pkg/client/clientset/versioned/typed/vault/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/discovery"
 	fakediscovery "k8s.io/client-go/discovery/fake"

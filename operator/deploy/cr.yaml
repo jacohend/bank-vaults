@@ -25,7 +25,7 @@ spec:
         tls_key_file: /vault/tls/server.key
     ui: true
 
-  # See: https://github.com/banzaicloud/bank-vaults#example-external-vault-configuration for more details.
+  # See: https://github.com/jacohend/bank-vaults#example-external-vault-configuration for more details.
   externalConfig:
     policies:
     - name: allow_secrets

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/banzaicloud/bank-vaults/pkg/kv"
+	"github.com/jacohend/bank-vaults/pkg/kv"
 	"github.com/hashicorp/vault/api"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cast"

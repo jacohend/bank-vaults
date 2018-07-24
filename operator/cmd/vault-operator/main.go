@@ -5,7 +5,7 @@ import (
 	"os"
 	"runtime"
 
-	stub "github.com/banzaicloud/bank-vaults/operator/pkg/stub"
+	stub "github.com/jacohend/bank-vaults/operator/pkg/stub"
 	sdk "github.com/operator-framework/operator-sdk/pkg/sdk"
 	sdkVersion "github.com/operator-framework/operator-sdk/version"
 

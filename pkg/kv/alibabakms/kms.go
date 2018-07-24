@@ -5,7 +5,7 @@ import (
 
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/kms"
-	"github.com/banzaicloud/bank-vaults/pkg/kv"
+	"github.com/jacohend/bank-vaults/pkg/kv"
 )
 
 type alibabaKMS struct {

@@ -3,17 +3,17 @@ package main
 import (
 	"fmt"
 
-	"github.com/banzaicloud/bank-vaults/pkg/kv"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/alibabakms"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/alibabaoss"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/awskms"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/azurekv"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/dev"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/gckms"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/gcs"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/k8s"
-	"github.com/banzaicloud/bank-vaults/pkg/kv/s3"
-	"github.com/banzaicloud/bank-vaults/pkg/vault"
+	"github.com/jacohend/bank-vaults/pkg/kv"
+	"github.com/jacohend/bank-vaults/pkg/kv/alibabakms"
+	"github.com/jacohend/bank-vaults/pkg/kv/alibabaoss"
+	"github.com/jacohend/bank-vaults/pkg/kv/awskms"
+	"github.com/jacohend/bank-vaults/pkg/kv/azurekv"
+	"github.com/jacohend/bank-vaults/pkg/kv/dev"
+	"github.com/jacohend/bank-vaults/pkg/kv/gckms"
+	"github.com/jacohend/bank-vaults/pkg/kv/gcs"
+	"github.com/jacohend/bank-vaults/pkg/kv/k8s"
+	"github.com/jacohend/bank-vaults/pkg/kv/s3"
+	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/spf13/viper"
 )
 

@@ -31,7 +31,7 @@ echo "Generating code to ${OUTDIR}"
 #                  k8s.io/kubernetes. The output-base is needed for the generators to output into the vendor dir
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
 ${CODEGEN_PKG}/generate-groups.sh all \
-  github.com/banzaicloud/bank-vaults/operator/pkg/client github.com/banzaicloud/bank-vaults/operator/pkg/apis \
+  github.com/jacohend/bank-vaults/operator/pkg/client github.com/jacohend/bank-vaults/operator/pkg/apis \
   vault:v1alpha1 \
   --output-base "${OUTDIR}" \
   --go-header-file ${SCRIPT_ROOT}/hack/custom-boilerplate.go.txt

@@ -33,7 +33,7 @@ spec:
     api_addr: https://vault.default:8200
     ui: true
 
-  # See: https://github.com/banzaicloud/bank-vaults#example-external-vault-configuration for more details.
+  # See: https://github.com/jacohend/bank-vaults#example-external-vault-configuration for more details.
   externalConfig:
     policies:
     - name: allow_secrets
