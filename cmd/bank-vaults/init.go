@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/hashicorp/vault/api"
+	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 const cfgInitRootToken = "init-root-token"
@@ -48,6 +49,7 @@ It will not unseal the Vault instance after initialising.`,
 
 		if err = v.Init(); err != nil {
 			logrus.Fatalf("error initialising vault: %s", err.Error())
+			os.Exit(1)
 		}
 	},
 }
