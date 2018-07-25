@@ -1,12 +1,12 @@
 package main
 
 import (
-	"time"
-
 	"github.com/hashicorp/vault/api"
 	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"os"
+	"time"
 )
 
 const cfgUnsealPeriod = "unseal-period"
