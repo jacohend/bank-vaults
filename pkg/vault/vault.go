@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jacohend/bank-vaults/pkg/kv"
 	"github.com/hashicorp/vault/api"
+	"github.com/jacohend/bank-vaults/pkg/kv"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cast"
 	"github.com/spf13/viper"
@@ -141,12 +141,6 @@ func (v *vault) Init() error {
 	}
 
 	logrus.Info("initializing vault")
-
-	// test backend first
-	err = v.keyStore.Test(v.testKey())
-	if err != nil {
-		return fmt.Errorf("error testing keystore before init: %s", err.Error())
-	}
 
 	// test for an existing keys
 	keys := []string{
