@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/hashicorp/vault/api"
+	"github.com/jacohend/bank-vaults/pkg/vault"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -95,6 +95,7 @@ from one of the followings:
 			// wait unsealPeriod before trying again
 			time.Sleep(unsealConfig.unsealPeriod)
 		}
+		os.Exit(1)
 	},
 }
 
