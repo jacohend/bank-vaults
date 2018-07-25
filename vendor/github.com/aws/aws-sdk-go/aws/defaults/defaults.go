@@ -91,7 +91,7 @@ func Handlers() request.Handlers {
 // existing service client or session's Config.
 func CredChain(cfg *aws.Config, handlers request.Handlers) *credentials.Credentials {
 	return credentials.NewCredentials(&credentials.ChainProvider{
-		VerboseErrors: aws.BoolValue(true),
+		VerboseErrors: true,
 		Providers: []credentials.Provider{
 			&credentials.EnvProvider{},
 			&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
