@@ -86,6 +86,7 @@ from one of the followings:
 
 				if err = v.Unseal(); err != nil {
 					logrus.Errorf("error unsealing vault: %s", err.Error())
+					os.Exit(1)
 				} else {
 					logrus.Infof("successfully unsealed vault")
 					os.Exit(0)
