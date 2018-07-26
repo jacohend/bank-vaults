@@ -458,7 +458,7 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 			// for the credential chain so user can identify why credentials
 			// failed to be retrieved.
 			cfg.Credentials = credentials.NewCredentials(&credentials.ChainProvider{
-				VerboseErrors: aws.BoolValue(cfg.CredentialsChainVerboseErrors),
+				VerboseErrors: true,
 				Providers: []credentials.Provider{
 					&credProviderError{Err: awserr.New("EnvAccessKeyNotFound", "failed to find credentials in the environment.", nil)},
 					&credProviderError{Err: awserr.New("SharedCredsLoad", fmt.Sprintf("failed to load profile, %s.", envCfg.Profile), nil)},

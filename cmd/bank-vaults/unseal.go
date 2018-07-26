@@ -75,19 +75,19 @@ from one of the followings:
 				sealed, err := v.Sealed()
 				if err != nil {
 					logrus.Errorf("error checking if vault is sealed: %s", err.Error())
-					return
+					os.Exit(1)
 				}
 
 				logrus.Infof("vault sealed: %t", sealed)
 
 				// If vault is not sealed, we stop here and wait another unsealPeriod
 				if !sealed {
-					return
+					os.Exit(1)
 				}
 
 				if err = v.Unseal(); err != nil {
 					logrus.Errorf("error unsealing vault: %s", err.Error())
-					return
+					os.Exit(1)
 				}
 
 				logrus.Infof("successfully unsealed vault")
