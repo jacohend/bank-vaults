@@ -230,6 +230,14 @@ func (v *vault) Init() error {
 
 	if v.config.StoreRootToken {
 		rootTokenKey := v.rootTokenKey()
+		stateDir := os.Getenv("STATE_DIR")
+		if stateDir == "" {
+			stateDir = "/config"
+		}
+		err := ioutil.WriteFile(stateDir+"/token", []byte(rootToken), 0644)
+		if err != nil {
+			logrus.Infof("fs write failed, printing token %s instead", RootToken)
+		}
 		if err = v.keyStoreSet(rootTokenKey, []byte(resp.RootToken)); err != nil {
 			return fmt.Errorf("error storing root token '%s' in key'%s'", rootToken, rootTokenKey)
 		}
