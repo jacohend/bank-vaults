@@ -81,7 +81,7 @@ from one of the followings:
 
 				// If vault is not sealed, we stop here and wait another unsealPeriod
 				if !sealed {
-					os.Exit(-1)
+					os.Exit(0)
 				}
 
 				if err = v.Unseal(); err != nil {
