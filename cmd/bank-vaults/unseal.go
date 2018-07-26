@@ -66,7 +66,6 @@ from one of the followings:
 					logrus.Infof("initializing vault...")
 					if err = v.Init(); err != nil {
 						logrus.Fatalf("error initializing vault: %s", err.Error())
-						os.Exit(1)
 					} else {
 						unsealConfig.proceedInit = false
 					}
@@ -76,27 +75,26 @@ from one of the followings:
 				sealed, err := v.Sealed()
 				if err != nil {
 					logrus.Errorf("error checking if vault is sealed: %s", err.Error())
-					os.Exit(1)
 				}
 
 				logrus.Infof("vault sealed: %t", sealed)
 
 				// If vault is not sealed, we stop here and wait another unsealPeriod
 				if !sealed {
-					os.Exit(0)
+					os.Exit(-1)
 				}
 
 				if err = v.Unseal(); err != nil {
 					logrus.Errorf("error unsealing vault: %s", err.Error())
-					os.Exit(1)
+				} else {
+					logrus.Infof("successfully unsealed vault")
+					os.Exit(0)
 				}
-
-				logrus.Infof("successfully unsealed vault")
 			}()
 			// wait unsealPeriod before trying again
 			time.Sleep(unsealConfig.unsealPeriod)
 		}
-		os.Exit(0)
+		os.Exit(1)
 	},
 }
 
